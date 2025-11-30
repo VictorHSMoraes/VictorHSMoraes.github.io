@@ -4,97 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
     <link rel="stylesheet" href="geral.css">
-    <link rel="stylesheet" href="home.css"> 
+    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    
+
+    <!-- NAVBAR SUPERIOR -->
     <nav class="main-navbar">
         <ul>
             <img src="logo/image.png" width="165" alt="Logo">
             <li><a href="home.html">Inicio</a></li>
             <li><a href="perdidos.html">Itens Perdidos</a></li>
-            <li><a href="resgatados.html">Itens Resgatados</a></li> 
-            <li><a href="perfil.html">Perfil</a></li>   <li><a href="registrar.html" class="diferente">+ Registrar Item</a></li> 
+            <li><a href="resgatados.html">Itens Resgatados</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="registrar.html" class="diferente">+ Registrar Item</a></li>
         </ul>
     </nav>
-    
+
     <div class="linhaHorizontal"></div>
 
+    <!-- CONTAINER PRINCIPAL DA PÁGINA -->
     <div class="layout-container">
-        
-        <nav class="menuvertical" aria-label="Menu de Navegação Secundário">
+
+        <!-- MENU LATERAL -->
+        <nav class="menuvertical">
             <a href="home.html" class="active-sidebar"><i class="fas fa-home"></i> Inicial</a>
             <a href="perdidos.html"><i class="fas fa-search-minus"></i> Item Perdido</a>
-            <a href="resgatados.html"><i class="fas fa-search-plus"></i> Item Resgatados</a>
+            <a href="resgatados.html"><i class="fas fa-search-plus"></i> Itens Resgatados</a>
             <a href="perfil.html"><i class="fas fa-cog"></i> Configurações</a>
-            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a> 
+            <a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
         </nav>
-        
+
+        <!-- ÁREA PRINCIPAL DE CONTEÚDO -->
         <main class="main-content-area">
-            
+
             <section class="search-section">
                 <h1>Achados e Perdidos Online</h1>
+
                 <div class="search-bar">
                     <button class="btn-register">Registrar Item</button>
-                    <input type="text" placeholder="Pesquisar Item">
+                    <input type="text" id="searchInput" placeholder="Pesquisar Item">
                     <button class="btn-search"><i class="fas fa-search"></i> Pesquisar Item</button>
                 </div>
-                
+
                 <h2>Últimos Itens</h2>
             </section>
 
-            <section class="items-list">
-                <div class="item-card">
-                    <img src="caminho/para/fone.jpg" alt="Fone de Ouvido Wireless">
-                    <div class="item-info">
-                        <h4>Wireless Headphones</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
+            <!-- LISTA DE ITENS (DINÂMICA) -->
+            <section class="items-list" id="listaItens"></section>
 
-                <div class="item-card">
-                    <img src="caminho/para/mochila.jpg" alt="Mochila">
-                    <div class="item-info">
-                        <h4>Mochila</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/garrafinha.jpg" alt="Garrafinha">
-                    <div class="item-info">
-                        <h4>Garrafinha</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/notebook.jpg" alt="Notebook">
-                    <div class="item-info">
-                        <h4>Notebook</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/livro.jpg" alt="Livro de Matema...">
-                    <div class="item-info">
-                        <h4>Livro de Matema...</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-            </section>
-            
         </main>
-        
+
+        <!-- SIDEBAR DIREITA -->
         <aside class="filter-sidebar">
             <h3>Listagem de Itens</h3>
             <div class="filter-group">
@@ -106,19 +70,22 @@
                     <option value="outros">Outros</option>
                 </select>
             </div>
+
             <div class="filter-group">
                 <select>
                     <option>Local</option>
                 </select>
             </div>
+
             <div class="filter-group date-filter">
                 <input type="date">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </aside>
-        
-    </div> 
-    
+
+    </div>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-links">
             <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
@@ -131,6 +98,65 @@
             <p>© 2025 Achados e Perdidos Online</p>
         </div>
     </footer>
+
+
+<!-- ====================== SCRIPTS ====================== -->
+<script src="api.js"></script>
+
+<script>
+// 🔒 1) Bloqueia acesso se não estiver logado
+if (!localStorage.getItem("token")) {
+    window.location.href = "index.html";
+}
+
+// 🔄 2) Carregar itens automaticamente
+document.addEventListener("DOMContentLoaded", carregarItens);
+
+async function carregarItens() {
+    const lista = document.getElementById("listaItens");
+    lista.innerHTML = "<p>Carregando itens...</p>";
+
+    const itens = await apiRequest("/itens", "GET");
+
+    if (!Array.isArray(itens)) {
+        lista.innerHTML = "<p>Erro ao carregar itens.</p>";
+        return;
+    }
+
+    lista.innerHTML = "";
+
+    itens.forEach(item => {
+        const card = document.createElement("div");
+        card.classList.add("item-card");
+
+        const imgSrc = item.imagem 
+            ? `http://localhost:3000/uploads/${item.imagem}` 
+            : "img/sem-imagem.png";
+
+        card.innerHTML = `
+            <img src="${imgSrc}" alt="${item.titulo}">
+            <div class="item-info">
+                <h4>${item.titulo}</h4>
+                <p><i class="fas fa-calendar-alt"></i> ${item.data_ocorrido || "Sem data"}</p>
+                <p><i class="fas fa-map-marker-alt"></i> ${item.Local?.nome || "Não informado"}</p>
+            </div>
+        `;
+
+        lista.appendChild(card);
+    });
+}
+
+// ➕ Botão Registrar Item
+document.querySelector(".btn-register").addEventListener("click", () => {
+    window.location.href = "registrar.html";
+});
+
+// 🚪 Logout
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+});
+
+</script>
 
 </body>
 </html>
