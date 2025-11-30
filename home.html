@@ -102,77 +102,31 @@
 
 
 <!-- ====================== SCRIPTS ====================== -->
-<script src="api.js"></script>
-
 <script>
-// 🔒 1) Bloqueia acesso se não estiver logado
+const API_URL = "https://back1-yktp.onrender.com/api";
+
+// Impede acesso sem login
 if (!localStorage.getItem("token")) {
     window.location.href = "index.html";
 }
 
-// 🔄 2) Carregar itens automaticamente
 document.addEventListener("DOMContentLoaded", carregarItens);
 
+// Função principal
 async function carregarItens() {
-    const lista = document.getElementById("listaItens");
-    lista.innerHTML = "<p>Carregando itens...</p>";
+    const container = document.getElementById("itemsContainer");
+    container.innerHTML = "<p>Carregando itens...</p>";
 
-    const itens = await apiRequest("/itens", "GET");
-
-    if (!Array.isArray(itens)) {
-        lista.innerHTML = "<p>Erro ao carregar itens.</p>";
-        return;
-    }
-
-    lista.innerHTML = "";
-
-    itens.forEach(item => {
-        const card = document.createElement("div");
-        card.classList.add("item-card");
-
-        const imgSrc = item.imagem 
-            ? `http://localhost:3000/uploads/${item.imagem}` 
-            : "img/sem-imagem.png";
-
-        card.innerHTML = `
-            <img src="${imgSrc}" alt="${item.titulo}">
-            <div class="item-info">
-                <h4>${item.titulo}</h4>
-                <p><i class="fas fa-calendar-alt"></i> ${item.data_ocorrido || "Sem data"}</p>
-                <p><i class="fas fa-map-marker-alt"></i> ${item.Local?.nome || "Não informado"}</p>
-            </div>
-        `;
-
-        lista.appendChild(card);
-    });
-}
-
-// ➕ Botão Registrar Item
-document.querySelector(".btn-register").addEventListener("click", () => {
-    window.location.href = "registrar.html";
-});
-
-// 🚪 Logout
-document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.removeItem("token");
-});
-
-</script>
-<script>
-const API_URL = "https://back1-yktp.onrender.com";
-
-async function carregarItens() {
     try {
         const resposta = await fetch(`${API_URL}/itens`);
         const itens = await resposta.json();
 
-        const container = document.getElementById("itemsContainer");
         container.innerHTML = "";
 
         itens.forEach(item => {
             const imagem = item.imagem
-                ? `${API_URL}/uploads/${item.imagem}`
-                : "img/sem-imagem.png"; // <-- AQUI a imagem padrão
+                ? `${API_URL.replace("/api", "")}/uploads/${item.imagem}`
+                : "img/sem-imagem.png";
 
             const card = `
                 <div class="item-card">
@@ -190,12 +144,22 @@ async function carregarItens() {
 
     } catch (erro) {
         console.error("Erro ao carregar itens:", erro);
+        container.innerHTML = "<p>Erro ao carregar itens.</p>";
     }
 }
 
-carregarItens();
+// Botão registrar item
+document.querySelector(".btn-register").addEventListener("click", () => {
+    window.location.href = "registrar.html";
+});
+
+// Logout
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+});
 </script>
 
 </body>
 </html>
+
 
