@@ -13,7 +13,6 @@
     <nav class="main-navbar">
         <ul>
             <img src="logo/image.png" width="165" alt="Logo">
-            
         </ul>
     </nav>
     
@@ -26,7 +25,7 @@
             <div class="register-container">
                 <h1>Criar sua Conta</h1>
                 
-                <form class="register-form">
+                <form class="register-form" id="formRegister">
                     
                     <div class="form-group">
                         <label for="nome">Nome Completo</label>
@@ -66,7 +65,9 @@
             
         </main>
         
-    </div> <footer class="footer">
+    </div>
+
+    <footer class="footer">
         <div class="footer-links">
             <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
             <span>•</span>
@@ -78,6 +79,54 @@
             <p>© 2025 Achados e Perdidos Online</p>
         </div>
     </footer>
+
+    <!-- INTEGRAÇÃO COM O BACKEND -->
+    <script>
+        const API_URL = "https://back1-yktp.onrender.com/api/auth/register";
+
+        document.getElementById("formRegister").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById("nome").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value;
+            const confirmar = document.getElementById("confirmar-senha").value;
+
+            if (senha.length < 6) {
+                alert("A senha deve ter no mínimo 6 caracteres.");
+                return;
+            }
+
+            if (senha !== confirmar) {
+                alert("As senhas não coincidem.");
+                return;
+            }
+
+            const dados = { nome, email, senha };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dados)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    alert(result.error || "Erro ao registrar.");
+                    return;
+                }
+
+                alert("Conta criada com sucesso!");
+                window.location.href = "index.html";
+
+            } catch (err) {
+                alert("Erro ao conectar com o servidor.");
+                console.error(err);
+            }
+        });
+    </script>
 
 </body>
 </html>
