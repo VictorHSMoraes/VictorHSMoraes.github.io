@@ -25,7 +25,8 @@
             <div class="login-container">
                 <h1>Acesso ao Sistema</h1>
                 
-                <form class="login-form" action="home.html"> 
+                <!-- FORM COM ID CORRETO -->
+                <form id="loginForm" class="login-form">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" placeholder="Digite seu email" required>
@@ -65,32 +66,43 @@
         </div>
     </footer>
 
-<script src="api.js"></script>
-<script>
-document.getElementById("loginForm")?.addEventListener("submit", async (e)=>{
- e.preventDefault();
- const email = document.getElementById("email").value;
- const senha = document.getElementById("senha").value;
- const r = await apiRequest("/auth/login","POST",{email,senha});
- if(r.token){ localStorage.setItem("token", r.token); location.href="home.html"; }
- else alert(r.error||"Erro");
-});
-</script>
+    <!-- SCRIPT DE LOGIN INTEGRADO COM BACKEND -->
+    <script>
+        const API_URL = "https://back1-yktp.onrender.com/api/auth/login";
 
-<script>
-document.getElementById("loginForm")?.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
-    const result = await apiRequest("/auth/login", "POST", { email, senha });
-    if (result.token) {
-        localStorage.setItem("token", result.token);
-        window.location.href = "index.html";
-    } else {
-        alert(result.error || "Erro no login");
-    }
-});
-</script>
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    alert(result.error || "Credenciais inválidas.");
+                    return;
+                }
+
+                // Salva token para futuras páginas
+                localStorage.setItem("token", result.token);
+                localStorage.setItem("user", JSON.stringify(result.usuario));
+
+                // Redireciona para página home
+                window.location.href = "home.html";
+
+            } catch (err) {
+                alert("Erro ao conectar ao servidor.");
+                console.error(err);
+            }
+        });
+    </script>
+
 </body>
-
 </html>
