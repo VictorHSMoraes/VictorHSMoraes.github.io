@@ -1,0 +1,239 @@
+:root {   --primary-color: #1E90FF; /* Cor primária (azul) */
+ --border-color: #dee2e6; /* Cor de borda/linha sutil */
+   --secondary-color: #f8f9fa;
+   --text-color: #333; /* Texto principal escuro */
+  --nav-text-color: #6c757d; /* Texto de navegação/sutil */
+            --separator-color: #e0e0e0; /* Cor da linha divisória */
+}
+
+/* Este CSS deve ser o PRIMEIRO no seu arquivo */
+* {
+    /* Garante que padding e border são incluídos dentro da largura/altura total do elemento */
+   
+    /* Zera a margem e padding padrão de TODOS os elementos */
+
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0;
+}
+
+body {
+    /* Seu código */
+    background-color: white;
+    font-family: 'Arimo', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    /* Mantido para esconder o scroll horizontal (como plano B) */
+    overflow-x: hidden;
+    /* Apenas para garantir que não haja margem externa */
+    width: 100vw;
+    
+    margin: 0; 
+    padding: 0;
+    
+}
+
+
+/* Regras de links globais */
+a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Regras de parágrafo */
+p {
+   justify-content: flex-end;
+   display: flex;
+   padding-right: 18px;
+}
+
+/* ==================================== */
+/* CABEÇALHO / MENU HORIZONTAL (navbar) */
+/* ==================================== */
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    padding-left: 0; 
+    padding-right: 50px; 
+    font-size: 18px;
+    width: 100%; 
+    max-width: 1300px; 
+    margin: 0 auto;
+        }
+        /* Estilo dos links do menu horizontal */
+nav.main-navbar ul li a {
+    /* Define um padding para dar a aparência de botão */
+    padding: 8px 12px;
+    
+    /* Remove a cor preta padrão e usa a cor sutil definida */
+    color: var(--nav-text-color); 
+    
+    /* Garante a transição suave de cor */
+    transition: color 0.2s, background-color 0.2s, border-radius 0.2s;
+}
+
+/* Efeito Hover (ao passar o mouse) */
+nav.main-navbar ul li a:hover {
+    /* Faz o texto ficar azul */
+    color: var(--primary-color);
+    
+    /* Adiciona um fundo levemente cinza/azul claro para dar o efeito de "botão" */
+    background-color: var(--secondary-color); 
+    
+    /* Arredonda as bordas para o visual de botão */
+    border-radius: 8px; 
+}
+
+/* Garante que o item + Registrar Item não perca o estilo de destaque */
+nav.main-navbar ul li a.diferente:hover {
+    background-color: #1565C0; /* Mantém o azul escuro para o botão principal */
+    color: white; /* Mantém o texto branco */
+}
+
+/* Estilo do botão de destaque */
+nav a.diferente {
+    background-color: var(--primary-color); 
+    color: white; 
+    border-radius: 10px; 
+    padding: 6px 18px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+nav a.diferente:hover {
+    background-color: #0077ff;
+}
+
+.linhaHorizontal {
+    border-top: 1px solid var(--separator-color); 
+    width: 100%;
+}
+
+/* ==================================== */
+/* LAYOUT GERAL (Sidebar + Conteúdo) */
+/* ==================================== */
+
+.layout-container {
+    display: flex; 
+    flex: 1; /* Ocupa todo o espaço restante e empurra o footer para baixo - ESSENCIAL */
+    width: 100%;
+    max-width: 1300px; 
+    margin: 0 auto;
+}
+
+/* ==================================== */
+/* MENU VERTICAL (Sidebar) */
+/* ==================================== */
+
+nav.menuvertical {
+    width: 240px; 
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px; 
+    padding-left: -10px; 
+    position: relative;
+    flex-shrink: 0; 
+}
+
+nav.menuvertical::after {
+    content: "";
+    position: absolute;
+    top: 0; 
+    right: 0; 
+    width: 1px;
+    height: 100%; 
+    background-color: var(--separator-color);
+}
+
+nav.menuvertical a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 11px 5px;
+    transition: 0.3s;
+    cursor: pointer;
+    min-width: 10px;
+}
+        
+nav.menuvertical a i {
+    margin-right: 10px; 
+}
+
+nav.menuvertical a:hover,nav.menuvertical a.active-sidebar { 
+            background-color: var(--primary-color); 
+            color: white;
+}
+        
+
+/* Estilo para a Área de Conteúdo (adicionada para visualização) */
+.content-area {
+    flex-grow: 1;
+    padding: 40px 60px;
+}
+
+        
+/* ==================================== */
+/* RODAPÉ (Footer) */
+/* ==================================== */
+
+.linha2 {
+    border-top: 1px solid (--separator-color);
+    width: 100%;
+    margin-bottom: 0; 
+    flex-shrink: 0;
+}
+
+.footer {
+    
+    padding: 25px 30px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+    color: var(--nav-text-color);
+    width: 100%;
+    margin-left: 0; 
+    margin-right: 0;
+    border-top: 1px solid #6c757d;
+    background-color: #ffffff;
+    color: #6c757d;
+        }
+
+.footer-links a {
+    margin: 5px 5px;
+    color: var(--nav-text-color);
+    color: #6c757d;
+    
+}
+
+.footer-links span {
+    color: var(--border-color);
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+} 
+
+/* ==================================== */
+/* PARA DEMONSTRAÇÃO DO LAYOUT */
+/* ==================================== */
+.content-area h1 {
+    color: var(--text-color);
+    font-size: 2em;
+}
+.content-area p {
+    justify-content: flex-start;
+    padding-right: 50px;
+    color: var(--nav-text-color);
+}

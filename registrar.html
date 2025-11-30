@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Item</title>
+    <link rel="stylesheet" href="geral.css">
+    <link rel="stylesheet" href="registro.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <nav class="main-navbar">
+        <ul>
+            <img src="logo/image.png" width="165" alt="Logo">
+            <li><a href="home.html">Inicio</a></li>
+            <li><a href="perdidos.html">Itens Perdidos</a></li>
+            <li><a href="resgatados.html">Itens Resgatados</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="registrar.html" class="diferente">+ Registrar Itens</a></li> 
+        </ul>
+    </nav>
+    
+    <div class="linhaHorizontal"></div>
+
+    <div class="layout-container">
+        
+         <nav class="menuvertical" aria-label="Menu de Navegação Secundário">
+            <a href="home.html" ><i class="fas fa-home"></i> Inicial</a>
+            <a href="perdidos.html"><i class="fas fa-search-minus"></i> Item Perdido</a>
+            <a href="resgatados.html"><i class="fas fa-search-plus"></i> Item Resgatados</a>
+            <a href="perfil.html"><i class="fas fa-cog"></i> Configurações</a>
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a> 
+        </nav>
+
+     <div class="form-content">
+            
+            <h2 class="form-title">Reportar item perdido</h2>
+            <p class="form-subtitle">Descreva o item abaixo e carregue suas imagens.</p>
+
+            <form action="#" method="POST" enctype="multipart/form-data">
+                
+                <div class="form-section upload-section">
+                    <label for="upload-image" class="section-label">Upload Imagem *</label>
+                    <div class="upload-box" id="upload-box">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p class="upload-text">Arraste ou drop sua imagem aqui, ou <a href="#">pesquise</a></p>
+                        <p class="upload-support">Suportado: JPG, PNG, HEIC (Max 10MB)</p>
+                        <input type="file" id="upload-image" name="upload-image" accept=".jpg, .jpeg, .png, .heic" style="display: none;" required>
+                    </div>
+                </div>
+
+                <div class="form-section item-details-section">
+                    <label class="section-label">Detalhes dos itens</label>
+                    
+                    <div class="form-group">
+                        <label for="item-name">Nome do Item *</label>
+                        <input type="text" id="item-name" name="item-name" placeholder="exem., Blue Backpack, iPhone 14 Pro" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-category">Categoria *</label>
+                        <select id="item-category" name="item-category" required>
+                            <option value="" disabled selected>Selecione a categoria</option>
+                            <option value="eletronicos">Eletrônicos</option>
+                            <option value="documentos">Documentos</option>
+                            <option value="acessorios">Acessórios</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-description">Descrição</label>
+                        <textarea id="item-description" name="item-description" rows="4" placeholder="Descreva seu item em detalhes (cor, faces, objetos, etc.)"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Realizar Envio</button>
+
+            </form>
+            
+        </div>
+        
+    </div>
+        
+        
+    
+    <div class="linha2"></div>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
+            <span>•</span>
+            <a href="#"><i class="fas fa-envelope"></i> Contato</a>
+            <span>•</span>
+            <a href="#"><i class="fas fa-info-circle"></i> Sobre</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Achados e Perdidos Online</p>
+        </div>
+    </footer>
+
+<script src="api.js"></script>
+<script>
+document.getElementById("formRegistro")?.addEventListener("submit", async (e)=>{
+ e.preventDefault();
+ const nome = document.getElementById("nome").value;
+ const email = document.getElementById("email").value;
+ const senha = document.getElementById("senha").value;
+ const r = await apiRequest("/auth/register","POST",{nome,email,senha});
+ if(r.id){ alert("Conta criada"); location.href="login.html"; }
+ else alert(r.error||"Erro");
+});
+</script>
+</body>
+</html>

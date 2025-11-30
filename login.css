@@ -1,0 +1,139 @@
+/* ==================================== */
+/* LAYOUT E CENTRALIZAÇÃO */
+/* ==================================== */
+
+nav.main-navbar ul {
+    /* Altera a distribuição do espaço para centralizar os itens */
+    justify-content: center; 
+    
+    /* Remove o padding que estava empurrando o conteúdo para a esquerda/direita */
+    padding-right: 0; 
+    
+    /* Garante que o logo (e o ul) estejam no centro */
+    text-align: center;
+}
+
+nav.main-navbar ul img {
+    /* Garante que a imagem seja tratada como um bloco centralizável dentro do flexbox */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ajustamos o layout-container para centralizar o conteúdo do login */
+.layout-container {
+    /* Ocupa a largura total definida no seu CSS base */
+    width: 100%; 
+    max-width: 1300px;
+    margin: 0 auto;
+    
+    /* Configuração para garantir que o formulário seja centralizado verticalmente */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+    flex: 1; /* Ocupa todo o espaço vertical disponível */
+}
+
+/* Garante que a área de conteúdo central também utilize o espaço disponível */
+.main-content-area {
+    /* Sobrescreve padding: 40px 60px; do geral.css se ele estiver muito grande */
+    padding: 50px 20px; 
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; /* Centraliza o login-container */
+    align-items: center;
+}
+
+/* ==================================== */
+/* FORMULÁRIO DE LOGIN */
+/* ==================================== */
+
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border: 1px solid var(--separator-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px; /* Largura máxima para o formulário */
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 1.8em;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* ==================================== */
+/* BOTÕES E LINKS */
+/* ==================================== */
+
+.btn-login {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #1565C0;
+}
+
+.btn-login i {
+    margin-right: 8px;
+}
+
+.login-links {
+    margin-top: 25px;
+    font-size: 0.9em;
+}
+
+.login-links a {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.login-links a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.login-links span {
+    color: var(--border-color);
+    margin: 0 5px;
+}

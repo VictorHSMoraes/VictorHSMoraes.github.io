@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="geral.css">
+    <link rel="stylesheet" href="perfil.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <nav class="main-navbar">
+        <ul>
+            <img src="logo/image.png" width="165" alt="Logo">
+            <li><a href="home.html">Inicio</a></li>
+            <li><a href="perdidos.html">Itens Perdidos</a></li>
+            <li><a href="resgatados.html">Itens Resgatados</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="registrar.html" class="diferente">+ Registrar Item</a></li> 
+        </ul>
+    </nav>
+    
+    <div class="linhaHorizontal"></div>
+
+    <div class="layout-container">
+        
+        <nav class="menuvertical" aria-label="Menu de Navegação Secundário">
+            <a href="home.html"><i class="fas fa-home"></i> Inicial</a>
+            <a href="perdidos.html"><i class="fas fa-search-minus"></i> Item Perdido</a>
+            <a href="resgatados.html"><i class="fas fa-search-plus"></i> Item Resgatados</a>
+            <a href="perfil.html"class="active-sidebar"><i class="fas fa-cog"></i> Configurações</a> 
+            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a> 
+        </nav>
+        
+        <main class="main-content-area">
+            <h1>Meu Perfil</h1>
+            
+            <section class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                    </div>
+                <div class="profile-info">
+                    <h2>Nome Completo do Usuário</h2>
+                    <p>Matrícula: 202402398</p>
+                </div>
+                <button class="btn-edit-profile"><i class="fas fa-edit"></i> Editar Perfil</button>
+            </section>
+            
+            <section class="profile-details">
+                <h2>Detalhes da Conta</h2>
+                
+                <div class="detail-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" value="Nome Completo" disabled>
+                </div>
+                
+                <div class="detail-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" value="usuario@email.com" disabled>
+                </div>
+                
+                <div class="detail-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" value="(99) 99999-9999" disabled>
+                </div>
+
+                <div class="detail-group">
+                    <label for="localizacao">Campus:</label>
+                    <input type="text" id="localizacao" value="Campus Principal" disabled>
+                </div>
+                
+                <button class="btn-change-password">Alterar Senha</button>
+            </section>
+            
+        </main>
+        </div> <footer class="footer">
+        <div class="footer-links">
+            <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
+            <span>•</span>
+            <a href="#"><i class="fas fa-envelope"></i> Contato</a>
+            <span>•</span>
+            <a href="#"><i class="fas fa-info-circle"></i> Sobre</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Achados e Perdidos Online</p>
+        </div>
+    </footer>
+
+</body>
+</html>

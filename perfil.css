@@ -1,0 +1,121 @@
+/* ==================================== */
+/* LAYOUT PRINCIPAL (para Perfil) */
+/* ==================================== */
+
+/* Garante que o conteúdo principal ocupe o espaço restante */
+.main-content-area {
+    flex-grow: 1;
+    padding: 30px 40px; /* Padding interno para o conteúdo principal */
+    min-width: 0;
+}
+
+.main-content-area h1 {
+    font-size: 2em;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--separator-color);
+    padding-bottom: 10px;
+}
+
+/* ==================================== */
+/* PROFILE HEADER (Foto, Info e Botão) */
+/* ==================================== */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--separator-color);
+    margin-bottom: 40px;
+}
+
+.profile-avatar i {
+    font-size: 70px; /* Tamanho do ícone de usuário */
+    color: var(--nav-text-color);
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.profile-info h2 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    /* Sobrescreve o estilo P global */
+    display: block;
+    padding: 0;
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: var(--nav-text-color);
+}
+
+.btn-edit-profile {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-edit-profile:hover {
+    background-color: #1565C0;
+}
+
+/* ==================================== */
+/* DETALHES DA CONTA (Formulário) */
+/* ==================================== */
+
+.profile-details h2 {
+    font-size: 1.4em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.detail-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.detail-group label {
+    width: 120px; /* Largura fixa para os rótulos */
+    font-weight: 600;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+.detail-group input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--secondary-color); /* Fundo claro para campos desabilitados/visuais */
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.btn-change-password {
+    background-color: #ffc107; /* Amarelo/aviso */
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.btn-change-password:hover {
+    background-color: #e0a800;
+}

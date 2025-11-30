@@ -1,0 +1,152 @@
+/* ==================================== */
+/* LAYOUT E CENTRALIZAÇÃO */
+/* ==================================== */
+nav.main-navbar ul {
+    /* Altera a distribuição do espaço para centralizar os itens */
+    justify-content: center; 
+    
+    /* Remove o padding que estava empurrando o conteúdo para a esquerda/direita */
+    padding-right: 0; 
+    
+    /* Garante que o logo (e o ul) estejam no centro */
+    text-align: center;
+}
+
+nav.main-navbar ul img {
+    /* Garante que a imagem seja tratada como um bloco centralizável dentro do flexbox */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Garante que o conteúdo seja centralizado horizontal e verticalmente na área principal */
+.layout-container {
+    /* Mantém os estilos existentes (flex: 1, max-width) */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+    flex: 1; 
+}
+
+.main-content-area {
+    padding: 30px 20px; 
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; /* Centraliza o container */
+    align-items: center;
+}
+
+/* ==================================== */
+/* FORMULÁRIO DE CADASTRO */
+/* ==================================== */
+
+.register-container {
+    background-color: white;
+    padding: 40px;
+    border: 1px solid var(--separator-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px; /* Um pouco mais largo que o login, se necessário */
+    text-align: center;
+}
+
+.register-container h1 {
+    font-size: 1.8em;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Estilo específico para o checkbox de Termos */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    display: inline;
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-bottom: 0;
+    color: var(--nav-text-color);
+}
+
+/* ==================================== */
+/* BOTÃO DE CADASTRO */
+/* ==================================== */
+
+.btn-register-account {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-register-account:hover {
+    background-color: #1565C0;
+}
+
+.btn-register-account i {
+    margin-right: 8px;
+}
+
+.register-links {
+    margin-top: 25px;
+    font-size: 0.9em;
+}
+
+.register-links a {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.register-links a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
