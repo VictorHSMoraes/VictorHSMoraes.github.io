@@ -54,7 +54,8 @@
             </section>
 
             <!-- LISTA DE ITENS (DINÂMICA) -->
-            <section class="items-list" id="listaItens"></section>
+           <section class="itens-list" id="itemsContainer"></section>
+
 
         </main>
 
@@ -157,6 +158,44 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 });
 
 </script>
+<script>
+const API_URL = "https://back1-yktp.onrender.com";
+
+async function carregarItens() {
+    try {
+        const resposta = await fetch(`${API_URL}/itens`);
+        const itens = await resposta.json();
+
+        const container = document.getElementById("itemsContainer");
+        container.innerHTML = "";
+
+        itens.forEach(item => {
+            const imagem = item.imagem
+                ? `${API_URL}/uploads/${item.imagem}`
+                : "img/sem-imagem.png"; // <-- AQUI a imagem padrão
+
+            const card = `
+                <div class="item-card">
+                    <img src="${imagem}" alt="${item.titulo}">
+                    <div class="item-info">
+                        <h4>${item.titulo}</h4>
+                        <p><i class="fas fa-calendar-alt"></i> ${item.data_ocorrido || "Data não informada"}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${item.Local?.nome || "Local não informado"}</p>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML += card;
+        });
+
+    } catch (erro) {
+        console.error("Erro ao carregar itens:", erro);
+    }
+}
+
+carregarItens();
+</script>
 
 </body>
 </html>
+
