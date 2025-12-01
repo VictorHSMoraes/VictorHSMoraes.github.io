@@ -4,163 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itens Perdidos</title>
-    <link rel="stylesheet" href="geral.css"> 
-    <link rel="stylesheet" href="perdidos.css">
+
+    <link rel="stylesheet" href="geral.css">
+    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-    
+
     <nav class="main-navbar">
         <ul>
             <img src="logo/image.png" width="165" alt="Logo">
             <li><a href="home.html">Inicio</a></li>
-            <li><a href="perdidos.html">Itens Perdidos</a></li>
+            <li><a href="perdidos.html" class="diferente">Itens Perdidos</a></li>
             <li><a href="resgatados.html">Itens Resgatados</a></li>
             <li><a href="perfil.html">Perfil</a></li>
-            <li><a href="registrar.html" class="diferente">+ Registrar Item</a></li> 
+            <li><a href="registrar.html" class="diferente">+ Registrar Item</a></li>
         </ul>
     </nav>
-    
+
     <div class="linhaHorizontal"></div>
 
     <div class="layout-container">
-        
-        <nav class="menuvertical" aria-label="Menu de Navegação Secundário">
+
+        <nav class="menuvertical">
             <a href="home.html"><i class="fas fa-home"></i> Inicial</a>
-           
-            <a href="perdidos.html" class="active-sidebar"><i class="fas 
-            fa-search-minus"></i> Item Perdido</a>
-            <a href="resgatados.html"><i class="fas fa-search-plus"></i> Item Resgatados</a>
+            <a href="perdidos.html" class="active-sidebar"><i class="fas fa-search-minus"></i> Itens Perdidos</a>
+            <a href="resgatados.html"><i class="fas fa-search-plus"></i> Itens Resgatados</a>
             <a href="perfil.html"><i class="fas fa-cog"></i> Configurações</a>
-            <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a> 
+            <a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
         </nav>
-        
+
         <main class="main-content-area">
-            
-            <h1>Itens Perdidos</h1>
-            
-            <section class="items-list">
-                
-                <div class="item-card">
-                    <img src="caminho/para/carteira.jpg" alt="Carteira">
-                    <div class="item-info">
-                        <h4>Carteira</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-
-                <div class="item-card">
-                    <img src="caminho/para/guarda-chuva.jpg" alt="Guarda-Chuva">
-                    <div class="item-info">
-                        <h4>Guarda-Chuva</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/garrafa.jpg" alt="Garrafa">
-                    <div class="item-info">
-                        <h4>Garrafa</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/chaves.jpg" alt="Chaves">
-                    <div class="item-info">
-                        <h4>Chaves</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/carteira.jpg" alt="Carteira">
-                    <div class="item-info">
-                        <h4>Carteira</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-
-                <div class="item-card">
-                    <img src="caminho/para/guarda-chuva.jpg" alt="Guarda-Chuva">
-                    <div class="item-info">
-                        <h4>Guarda-Chuva</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/garrafa.jpg" alt="Garrafa">
-                    <div class="item-info">
-                        <h4>Garrafa</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
-                <div class="item-card">
-                    <img src="caminho/para/chaves.jpg" alt="Chaves">
-                    <div class="item-info">
-                        <h4>Chaves</h4>
-                        <p><i class="fas fa-calendar-alt"></i> Data:</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Local:</p>
-                    </div>
-                </div>
-                
+            <section class="search-section">
+                <h1>Itens Perdidos</h1>
             </section>
-            
-            
+
+            <section class="itens-list" id="itemsContainer"></section>
         </main>
-        
-        <aside class="filter-sidebar">
-            <h3>Filtros <i class="fas fa-filter"></i></h3>
-            <div class="filter-group">
-                <select>
-                    <option>Categorias</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <select>
-                    <option>Local</option>
-                </select>
-            </div>
-            <div class="filter-group date-filter">
-                <input type="date" placeholder="Data">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-        </aside>
 
-    </div> <footer class="footer">
-        <div class="footer-links">
-            <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
-            <span>•</span>
-            <a href="#"><i class="fas fa-envelope"></i> Contato</a>
-            <span>•</span>
-            <a href="#"><i class="fas fa-info-circle"></i> Sobre</a>
-        </div>
-        <div class="copyright">
-            <p>© 2025 Achados e Perdidos Online</p>
-        </div>
-    </footer>
+    </div>
 
-<script src="api.js"></script>
 <script>
-async function carregar(){
- const itens = await apiRequest("/itens");
- const c = document.getElementById("listaItens");
- if(!c) return;
- c.innerHTML="";
- itens.forEach(i=>{
-  c.innerHTML += `<div><h3>${i.nome}</h3><p>${i.descricao}</p></div>`;
- });
+const API_URL = "https://back1-yktp.onrender.com";
+
+async function carregarItens() {
+    try {
+        const resposta = await fetch(`${API_URL}/api/itens?status=1`); // status 1 = perdido
+        const itens = await resposta.json();
+
+        const container = document.getElementById("itemsContainer");
+        container.innerHTML = "";
+
+        itens.forEach(item => {
+            const imagem = item.imagem
+                ? `${API_URL.replace("/api", "")}/uploads/${item.imagem}`
+                : "img/sem-imagem.png";
+
+            const card = `
+                <div class="item-card">
+                    <img src="${imagem}" alt="${item.titulo}">
+                    <div class="item-info">
+                        <h4>${item.titulo}</h4>
+                        <p><i class="fas fa-calendar-alt"></i> ${item.data_ocorrido || "Data não informada"}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${item.Local?.nome || "Local não informado"}</p>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML += card;
+        });
+
+    } catch (erro) {
+        console.error("Erro ao carregar itens:", erro);
+    }
 }
-carregar();
+
+carregarItens();
 </script>
+
 </body>
 </html>
