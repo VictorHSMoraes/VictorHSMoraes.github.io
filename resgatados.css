@@ -159,3 +159,93 @@
 .date-filter button:hover {
     background-color: var(--border-color);
 }
+
+/* ==================================== */
+/* RESPONSIVIDADE (MOBILE / TABLET) */
+/* ==================================== */
+
+/* Ajustes para Telas de 768px (Tablets e Mobile) */
+@media (max-width: 768px) {
+    
+    /* --- 1. CONTEÚDO PRINCIPAL --- */
+    
+    .main-content-area {
+        padding: 20px 0; /* Reduz o padding superior e remove o padding-right desnecessário */
+        text-align: center; /* Centraliza o H1 */
+    }
+
+    .main-content-area h1 {
+        margin-bottom: 20px;
+    }
+
+    /* --- 2. LISTAGEM DE ITENS (Card Grid) --- */
+
+    .items-list {
+        /* Centraliza o bloco inteiro de cards */
+        justify-content: center; 
+        gap: 15px; /* Reduz o espaçamento entre cards */
+    }
+
+    .item-card {
+        /* Força 2 cards por linha em telas maiores que 400px (tablet vertical) */
+        width: calc(50% - 10px); 
+        min-width: 150px; 
+    }
+    
+    .item-info {
+        text-align: left; /* Mantém o texto dentro do card alinhado à esquerda */
+    }
+    
+    /* --- 3. BARRA LATERAL DE FILTROS --- */
+
+    .filter-sidebar {
+        width: 100%; /* Garante que ocupe a largura total */
+        padding: 15px; /* Reduz o padding interno */
+        margin: 0 auto; /* Centraliza a caixa do filtro no layout-container (se tiver espaço extra) */
+        border: none; /* Opcional: remover a borda para um look mais limpo em mobile */
+        border-bottom: 1px solid var(--separator-color); /* Adiciona um separador */
+        border-radius: 0;
+    }
+    
+    .filter-sidebar h3 {
+        text-align: center; /* CENTRALIZA o título 'Filtros' */
+        margin-bottom: 15px;
+    }
+
+    /* Centraliza os grupos de filtros para proporção */
+    .filter-group {
+        max-width: 300px; /* Limita a largura dos inputs para não ficarem gigantes */
+        margin: 0 auto 15px auto; /* CENTRALIZA o grupo de filtro */
+    }
+    
+    /* Input/Select - Garante que preencham 100% do seu max-width (300px) */
+    .filter-sidebar select, 
+    .date-filter input[type="date"] {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+}
+
+/* Ajustes para Telas EXTREMAMENTE pequenas (max-width: 400px) */
+@media (max-width: 400px) {
+    
+    /* Força 1 card por linha em telas muito pequenas */
+    .item-card {
+        width: 100%; /* Ocupa a largura total (menos padding) */
+        max-width: 280px; /* Limita o tamanho máximo do card se a tela for muito larga (e.g., tablet em modo retrato) */
+    }
+    
+    .items-list {
+        gap: 10px;
+    }
+    
+    /* Centraliza os cards novamente */
+    .items-list {
+        justify-content: center;
+    }
+    
+    .filter-group {
+        max-width: 100%; /* Permite que o grupo use a largura total do filtro sidebar */
+    }
+}
