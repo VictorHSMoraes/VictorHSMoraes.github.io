@@ -1,114 +1,80 @@
-:root {   --primary-color: #1E90FF; /* Cor primária (azul) */
- --border-color: #dee2e6; /* Cor de borda/linha sutil */
-   --secondary-color: #f8f9fa;
-   --text-color: #333; /* Texto principal escuro */
-  --nav-text-color: #6c757d; /* Texto de navegação/sutil */
-            --separator-color: #e0e0e0; /* Cor da linha divisória */
+:root { 
+    --primary-color: #1E90FF; /* Azul Principal */
+    --primary-dark: #1565C0;  /* Azul Escuro para Hover */
+    --border-color: #dee2e6; /* Borda Sutil */
+    --secondary-bg: #f8f9fa; /* Fundo Secundário */
+    --text-color: #333; /* Texto Principal */
+    --nav-text-color: #6c757d; /* Texto de Navegação/Sutil */
+    --separator-color: #e0e0e0; /* Linha Divisória */
 }
 
-/* Este CSS deve ser o PRIMEIRO no seu arquivo */
+/* Reset Básico */
 * {
-    /* Garante que padding e border são incluídos dentro da largura/altura total do elemento */
-   
-    /* Zera a margem e padding padrão de TODOS os elementos */
-
     box-sizing: border-box; 
     margin: 0; 
     padding: 0;
 }
 
 body {
-    /* Seu código */
     background-color: white;
     font-family: 'Arimo', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column; 
-    /* Mantido para esconder o scroll horizontal (como plano B) */
     overflow-x: hidden;
-    /* Apenas para garantir que não haja margem externa */
-    width: 100vw;
-    
-    margin: 0; 
-    padding: 0;
-    
 }
 
-
-/* Regras de links globais */
+/* Regras Globais */
 a {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-/* Regras de parágrafo */
-p {
-   justify-content: flex-end;
-   display: flex;
-   padding-right: 18px;
-}
-
 /* ==================================== */
 /* CABEÇALHO / MENU HORIZONTAL (navbar) */
 /* ==================================== */
 
-ul {
+nav.main-navbar ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
     align-items: center;
-    padding-top: 15px;
-    padding-bottom: 0px;
-    padding-left: 0; 
-    padding-right: 50px; 
+    padding: 15px 50px 0 0; /* Unificado padding */
     font-size: 18px;
     width: 100%; 
     max-width: 1300px; 
     margin: 0 auto;
-        }
-        /* Estilo dos links do menu horizontal */
-nav.main-navbar ul li a {
-    /* Define um padding para dar a aparência de botão */
-    padding: 8px 12px;
-    
-    /* Remove a cor preta padrão e usa a cor sutil definida */
-    color: var(--nav-text-color); 
-    
-    /* Garante a transição suave de cor */
-    transition: color 0.2s, background-color 0.2s, border-radius 0.2s;
 }
 
-/* Efeito Hover (ao passar o mouse) */
-nav.main-navbar ul li a:hover {
-    /* Faz o texto ficar azul */
+/* Estilo dos links */
+nav.main-navbar ul li a {
+    padding: 8px 12px;
+    color: var(--nav-text-color); 
+    transition: all 0.2s; /* Unificado transições */
+}
+
+/* Efeito Hover/Ativo Comum */
+nav.main-navbar ul li a:hover,
+nav.main-navbar ul li a.active-nav {
     color: var(--primary-color);
-    
-    /* Adiciona um fundo levemente cinza/azul claro para dar o efeito de "botão" */
-    background-color: var(--secondary-color); 
-    
-    /* Arredonda as bordas para o visual de botão */
+    background-color: var(--secondary-bg); 
     border-radius: 8px; 
 }
 
-/* Garante que o item + Registrar Item não perca o estilo de destaque */
-nav.main-navbar ul li a.diferente:hover {
-    background-color: #1565C0; /* Mantém o azul escuro para o botão principal */
-    color: white; /* Mantém o texto branco */
-}
-
-/* Estilo do botão de destaque */
+/* Estilo do botão de destaque (+ Registrar Item) */
 nav a.diferente {
     background-color: var(--primary-color); 
     color: white; 
     border-radius: 10px; 
     padding: 6px 18px;
     font-weight: bold;
-    transition: background-color 0.2s;
 }
 
+/* Hover do botão de destaque */
 nav a.diferente:hover {
-    background-color: #0077ff;
+    background-color: var(--primary-dark);
+    color: white; /* Garante que o texto permaneça branco */
 }
 
 .linhaHorizontal {
@@ -117,15 +83,17 @@ nav a.diferente:hover {
 }
 
 /* ==================================== */
-/* LAYOUT GERAL (Sidebar + Conteúdo) */
+/* LAYOUT GERAL (Flex Container) */
 /* ==================================== */
 
 .layout-container {
     display: flex; 
-    flex: 1; /* Ocupa todo o espaço restante e empurra o footer para baixo - ESSENCIAL */
+    flex: 1; 
     width: 100%;
     max-width: 1300px; 
     margin: 0 auto;
+    gap: 20px; 
+    padding: 0 20px; 
 }
 
 /* ==================================== */
@@ -137,11 +105,11 @@ nav.menuvertical {
     display: flex;
     flex-direction: column;
     padding-top: 20px; 
-    padding-left: -10px; 
     position: relative;
     flex-shrink: 0; 
 }
 
+/* Linha divisória vertical */
 nav.menuvertical::after {
     content: "";
     position: absolute;
@@ -154,66 +122,61 @@ nav.menuvertical::after {
 
 nav.menuvertical a {
     color: black;
-    text-decoration: none;
     padding: 10px 15px;
     display: flex;
     align-items: center;
     border-radius: 10px;
     margin: 11px 5px;
     transition: 0.3s;
-    cursor: pointer;
-    min-width: 10px;
 }
-        
+    
 nav.menuvertical a i {
     margin-right: 10px; 
 }
 
-nav.menuvertical a:hover,nav.menuvertical a.active-sidebar { 
-            background-color: var(--primary-color); 
-            color: white;
-}
-        
-
-/* Estilo para a Área de Conteúdo (adicionada para visualização) */
-.content-area {
-    flex-grow: 1;
-    padding: 40px 60px;
+nav.menuvertical a:hover,
+nav.menuvertical a.active-sidebar { 
+    background-color: var(--primary-color); 
+    color: white;
 }
 
-        
+
 /* ==================================== */
-/* RODAPÉ (Footer) */
+/* CONTEÚDO PRINCIPAL (Main) e Filtros (Aside) */
 /* ==================================== */
 
-.linha2 {
-    border-top: 1px solid (--separator-color);
-    width: 100%;
-    margin-bottom: 0; 
+.main-content-area {
+    flex-grow: 1; 
+    padding: 40px 0;
+    min-width: 0;
+}
+
+.filter-sidebar {
+    width: 280px; 
     flex-shrink: 0;
+    padding-top: 40px;
 }
+
+/* ==================================== */
+/* RODAPÉ (Footer) - Removida a classe .linha2 redundante */
+/* ==================================== */
 
 .footer {
-    
-    padding: 25px 30px ;
+    padding: 25px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.85em;
-    color: var(--nav-text-color);
     width: 100%;
-    margin-left: 0; 
-    margin-right: 0;
-    border-top: 1px solid #6c757d;
+    border-top: 1px solid var(--nav-text-color); /* Usando var(--nav-text-color) ou #6c757d */
     background-color: #ffffff;
-    color: #6c757d;
-        }
+    color: var(--nav-text-color);
+    flex-shrink: 0; 
+}
 
 .footer-links a {
-    margin: 5px 5px;
+    margin: 0 5px; /* Ajuste para o espaçamento */
     color: var(--nav-text-color);
-    color: #6c757d;
-    
 }
 
 .footer-links span {
@@ -226,14 +189,203 @@ nav.menuvertical a:hover,nav.menuvertical a.active-sidebar {
 } 
 
 /* ==================================== */
-/* PARA DEMONSTRAÇÃO DO LAYOUT */
+/* REGRAS DE RESPONSIVIDADE OTIMIZADAS */
 /* ==================================== */
-.content-area h1 {
-    color: var(--text-color);
-    font-size: 2em;
+
+/* Oculta sidebars em telas menores que 992px (Tablets) */
+@media (max-width: 992px) {
+    
+    .layout-container {
+        padding: 0 15px; 
+        display: block; 
+    }
+
+    nav.menuvertical,
+    .filter-sidebar {
+        display: none; /* Oculta sidebars padrão */
+    }
+    
+    nav.menuvertical::after {
+        content: none;
+    }
+
+    .main-content-area {
+        padding: 20px 0; 
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 20px 15px;
+    }
+    
+    .footer-links {
+        display: flex;
+        flex-direction: row; /* Mantendo os links em linha por padrão no tablet */
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .footer-links span {
+        display: none;
+    }
 }
-.content-area p {
-    justify-content: flex-start;
-    padding-right: 50px;
-    color: var(--nav-text-color);
+
+/* Layout Móvel (max-width: 480px) - Ordem: Menu Vertical -> Filtros -> Conteúdo Principal */
+@media (max-width: 480px) {
+    
+    /* Oculta Menu Horizontal de vez e linha divisória */
+    nav.main-navbar,
+    .linhaHorizontal {
+        display: none;
+    }
+    
+    .layout-container {
+        padding: 0 10px; 
+        display: flex; 
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* 1. Menu Vertical (Scroll Horizontal no Topo) */
+    nav.menuvertical {
+        display: flex; 
+        width: 100%; 
+        padding-top: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid var(--separator-color);
+        flex-direction: row; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        order: 1; 
+    }
+    
+    nav.menuvertical a {
+        flex-shrink: 0; 
+        padding: 8px 12px;
+        margin: 5px 2px;
+        font-size: 0.9em;
+    }
+    
+    /* 2. Sidebar de Filtros */
+    .filter-sidebar {
+        display: block; 
+        width: 100%;
+        padding-top: 0;
+        order: 2; 
+    }
+    
+    /* 3. Conteúdo Principal */
+    .main-content-area {
+        order: 3; 
+        padding: 10px 0;
+    }
 }
+
+/* ==================================== */
+/* REGRAS DE RESPONSIVIDADE OTIMIZADAS */
+/* ==================================== */
+
+/* ==================================== */
+/* REGRAS DE RESPONSIVIDADE OTIMIZADAS */
+/* ==================================== */
+
+/* Ajustes para Telas de 768px (Tablets e Proporção) */
+@media (max-width: 768px) {
+    
+    /* --- 1. Menu Horizontal (Navbar) --- */
+    nav.main-navbar ul {
+        flex-wrap: wrap; 
+        justify-content: center; /* Centraliza todos os itens */
+        padding: 10px 0; /* Ajusta o padding */
+    }
+
+    /* Logo - Garante que ocupe 100% da linha e fique centralizada */
+    nav.main-navbar ul img {
+        width: 120px; 
+        margin: 10px auto; /* Centraliza */
+        order: -1; 
+        flex-basis: 100%; 
+    }
+
+    /* Links de Navegação - Deixa os links principais centralizados na linha abaixo */
+    nav.main-navbar ul li {
+        margin: 5px 8px; /* Espaçamento entre os links */
+    }
+    
+    /* Botão '+ Registrar Item' - Centralizado e mais largo */
+    nav.main-navbar ul li a.diferente {
+        display: block; 
+        width: 90%; /* Usa uma boa largura */
+        max-width: 300px; /* Limita o crescimento em telas mais largas que 768px */
+        margin: 10px auto 0 auto; /* Centraliza */
+    }
+
+    /* --- 2. Layout Principal (Empilhamento e Centralização) --- */
+    .layout-container {
+        padding: 0 15px; 
+        display: flex; 
+        flex-direction: column; 
+        gap: 15px;
+        /* Adiciona max-width e margin: auto para centralizar o container inteiro */
+        max-width: 600px; /* Limita a largura em telas maiores que 600px, mas menores que 768px */
+        margin: 0 auto;
+    }
+
+    /* Oculta as sidebars Padrão do Desktop */
+    nav.menuvertical::after {
+        content: none;
+    }
+
+    /* Reexibe o Menu Vertical no topo, com scroll horizontal */
+    nav.menuvertical {
+        display: flex; 
+        width: 100%; 
+        padding: 10px 0;
+        margin-bottom: 5px;
+        border-bottom: 1px solid var(--separator-color);
+        flex-direction: row; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        order: 1; 
+    }
+    
+    nav.menuvertical a {
+        flex-shrink: 0; 
+        padding: 8px 12px;
+        margin: 5px 2px;
+        font-size: 0.9em;
+    }
+
+    /* Reexibe a Sidebar de Filtros */
+    .filter-sidebar {
+        display: block; 
+        width: 100%;
+        padding-top: 0;
+        order: 2; 
+    }
+
+    .main-content-area {
+        padding: 20px 0; 
+        order: 3; 
+    }
+
+    /* Footer adjustments */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 20px 15px;
+        max-width: 600px; /* Centraliza o rodapé também */
+        margin: 0 auto;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+
