@@ -29,7 +29,7 @@
             <a href="home.html"><i class="fas fa-home"></i> Inicial</a>
             <a href="perdidos.html"><i class="fas fa-search-minus"></i> Item Perdido</a>
             <a href="resgatados.html"><i class="fas fa-search-plus"></i> Item Resgatados</a>
-            <a href="perfil.html"class="active-sidebar"><i class="fas fa-cog"></i> Configurações</a> 
+            <a href="perfil.html" class="active-sidebar"><i class="fas fa-cog"></i> Configurações</a> 
             <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a> 
         </nav>
         
@@ -37,14 +37,14 @@
             <h1>Meu Perfil</h1>
             
             <section class="profile-header">
-                <div class="profile-avatar">
+                <div class="profile-avatar" id="avatarUpload">
                     <i class="fas fa-user-circle"></i>
-                    </div>
-                <div class="profile-info">
-                    <h2>Nome Completo do Usuário</h2>
-                    <p>Matrícula: 202402398</p>
                 </div>
-                <button class="btn-edit-profile"><i class="fas fa-edit"></i> Editar Perfil</button>
+                <div class="profile-info">
+                    <h2 id="headerNome">Carregando...</h2>
+                    <p id="headerMatricula">ID: ---</p>
+                </div>
+                <button class="btn-edit-profile" id="btnEdit"><i class="fas fa-edit"></i> Editar Perfil</button>
             </section>
             
             <section class="profile-details">
@@ -52,29 +52,31 @@
                 
                 <div class="detail-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" value="Nome Completo" disabled>
+                    <input type="text" id="nome" disabled>
                 </div>
                 
                 <div class="detail-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" value="usuario@email.com" disabled>
+                    <input type="email" id="email" disabled>
                 </div>
                 
                 <div class="detail-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" value="(99) 99999-9999" disabled>
+                    <input type="tel" id="telefone" disabled>
                 </div>
 
                 <div class="detail-group">
                     <label for="localizacao">Campus:</label>
-                    <input type="text" id="localizacao" value="Campus Principal" disabled>
+                    <input type="text" id="localizacao" disabled>
                 </div>
                 
                 <button class="btn-change-password">Alterar Senha</button>
             </section>
             
         </main>
-        </div> <footer class="footer">
+    </div>
+
+    <footer class="footer">
         <div class="footer-links">
             <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
             <span>•</span>
@@ -86,6 +88,91 @@
             <p>© 2025 Achados e Perdidos Online</p>
         </div>
     </footer>
+
+
+<!-- ===========================
+      SCRIPT DO PERFIL
+=========================== -->
+<script>
+const API_URL = "https://back1-yktp.onrender.com/api/auth";
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "login.html";
+}
+
+// Buscar dados do usuário
+async function carregarPerfil() {
+    try {
+        const resp = await fetch(`${API_URL}/me`, {
+            headers: { "Authorization": "Bearer " + token }
+        });
+
+        const user = await resp.json();
+
+        // Preencher campos
+        document.getElementById("nome").value = user.nome;
+        document.getElementById("email").value = user.email;
+        document.getElementById("telefone").value = user.telefone || "";
+        document.getElementById("localizacao").value = user.campus || "";
+
+        // Header
+        document.getElementById("headerNome").textContent = user.nome;
+        document.getElementById("headerMatricula").textContent = "ID: " + user.id;
+
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao carregar perfil");
+    }
+}
+
+carregarPerfil();
+
+// Botão editar – habilita os inputs
+document.getElementById("btnEdit").addEventListener("click", () => {
+    document.querySelectorAll("input").forEach(i => {
+        if (i.id !== "email") i.disabled = false;
+    });
+
+    // Transformar o botão em "Salvar"
+    const btn = document.getElementById("btnEdit");
+    btn.innerHTML = "<i class='fas fa-save'></i> Salvar";
+    btn.onclick = salvarPerfil;
+});
+
+// Atualizar dados no backend
+async function salvarPerfil() {
+    const body = {
+        nome: document.getElementById("nome").value,
+        telefone: document.getElementById("telefone").value
+    };
+
+    try {
+        const resp = await fetch(`${API_URL}/update`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(body)
+        });
+
+        const data = await resp.json();
+        alert("Perfil atualizado!");
+
+        window.location.reload();
+
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao salvar alterações");
+    }
+}
+
+// Avatar (futuro upload)
+document.getElementById("avatarUpload").addEventListener("click", () => {
+    alert("Upload de foto ainda não configurado no backend!");
+});
+</script>
 
 </body>
 </html>
