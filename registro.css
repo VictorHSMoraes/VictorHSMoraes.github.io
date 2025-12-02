@@ -171,3 +171,73 @@ select {
 .submit-button:active {
     transform: translateY(1px); 
 }
+
+/* ==================================== */
+/* 4. RESPONSIVIDADE (MOBILE / TABLET) */
+/* ==================================== */
+
+@media (max-width: 992px) {
+    
+    /* 1. LAYOUT PRINCIPAL (O layout-container já empilha em 768px no geral.css) */
+    
+    .form-content {
+        /* Garante que ocupe a largura total e centraliza o bloco */
+        width: 100%;
+        max-width: 100%; 
+        padding: 20px 15px; /* Reduz o padding para mobile */
+        margin: 0 auto; /* Centraliza o conteúdo dentro do layout-container */
+        
+        /* Define a ordem para aparecer DEPOIS do Menu Vertical (que tem order: 1 no geral.css) */
+        order: 2; 
+    }
+    
+    /* Remove a margem esquerda que afastava da sidebar no desktop */
+    .form-content {
+        margin-left: 0; 
+    }
+    
+    /* --- Estilos do Formulário em Mobile --- */
+
+    .form-title {
+        font-size: 1.6em; 
+        text-align: center;
+    }
+
+    .form-subtitle {
+        font-size: 0.9em; 
+        text-align: center;
+    }
+    
+    .form-section {
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: none; /* Simplifica o visual em mobile */
+        border: 1px solid var(--separator-color); /* Mantém a borda clara */
+    }
+    
+    /* --- Botão --- */
+    .submit-button {
+        margin-top: 20px;
+    }
+    
+}
+
+
+/* Ajustes visuais finos para telas EXTREMAMENTE pequenas (max-width: 400px) */
+@media (max-width: 400px) {
+    .form-content {
+        padding: 10px;
+    }
+    
+    .form-title {
+        font-size: 1.4em;
+    }
+    
+    .form-section {
+        padding: 15px;
+    }
+    
+    .upload-box {
+        padding: 25px 15px; 
+    }
+}
