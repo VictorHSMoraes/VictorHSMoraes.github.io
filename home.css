@@ -31,11 +31,13 @@
 
 .item-card img {
     width: 100%;
-    height: auto;            /* Nunca força altura */
-    max-height: 250px;       /* Mantém aspecto sem estourar */
-    object-fit: cover;
+    max-height: 250px;
+    height: auto;
+    object-fit: contain;
+    background-color: #f2f2f2; /* evita área preta */
     display: block;
 }
+
 
 /* ============================== */
 /* INFORMAÇÕES DO ITEM            */
@@ -124,3 +126,4 @@
         white-space: normal;
     }
 }
+
